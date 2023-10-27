@@ -20,10 +20,10 @@
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
     <ProgFlashFromRam>true</ProgFlashFromRam>
-    <RamSnippetAddress />
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
     <UncachedRange />
     <preserveEEPROM>true</preserveEEPROM>
-    <OverrideVtorValue />
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
     <BootSegment>2</BootSegment>
     <ResetRule>0</ResetRule>
     <eraseonlaunchrule>0</eraseonlaunchrule>
@@ -120,34 +120,7 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="adc.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="adc.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="board.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="board.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="clock.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="clock.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="gpio.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="gpio.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="led.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="led.h">
+    <Compile Include="config_bits.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
@@ -156,22 +129,10 @@
     <Compile Include="main.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="mc60.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="mc60.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="twi.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="twi.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="uart.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="uart.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

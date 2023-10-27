@@ -18,7 +18,7 @@
 /************************************************************************/
 /* Global Variables                                                     */
 /************************************************************************/
-static FILE UART_Stream = FDEV_SETUP_STREAM(UART_Send_Char, NULL, _FDEV_SETUP_WRITE);
+//static FILE UART_Stream = FDEV_SETUP_STREAM(UART_Send_Char, NULL, _FDEV_SETUP_WRITE);
 uint8_t UART_RX_Data_Buff[UART_RX_DATA_BUFF_LEN];
 uint8_t UART_RX_Data_Len;
 
@@ -35,7 +35,7 @@ void UART_Configuration(uint16_t BaudRate)
 	USART0.BAUD = ((float)(F_CPU * 64 / (16 * (float)BaudRate)) + 0.5); // Set Baud Rate
 	USART0.CTRLA = USART_RXCIE_bm;										// Enable USART0 RX Data Interrupt
 	USART0.CTRLB = USART_TXEN_bm | USART_RXEN_bm;						// Enable USART0 RX & TX
-	stdout = &UART_Stream;												// for use printf function
+	//stdout = &UART_Stream;											// for use printf function
 }
 
 /************************************************************************/
@@ -67,10 +67,7 @@ void UART_Clean_Rx_Data(void)
 /************************************************************************/
 int UART_Send_Char(char data, FILE *stream)
 {
-	while (!(USART0.STATUS & USART_DREIF_bm))
-	{
-		asm("NOP");
-	}					   // Wait Sending Data
+	while (!(USART0.STATUS & USART_DREIF_bm)); // Wait Sending Data
 	USART0.TXDATAL = data; // Send Data
 	return 0;
 }

@@ -20,35 +20,38 @@
 /************************************************************************/
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <avr/eeprom.h>
 #include <util/delay.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdbool.h>
+
+#include "twi.h"
+
+#define DEFAULT_MAX_MC60_NO_ACTIVE_TIME 60000UL
 
 /************************************************************************/
-/* External I/O ports and pins                                          */
+/* I/O ports and pins                                                   */
 /************************************************************************/
-/* MC60.h */
+/* MC60 */
 #define MC60_VBAT_EN_PORT PORTA
 #define MC60_VBAT_EN_PIN PIN4_bm
 #define MC60_PWRKEY_PORT PORTA
 #define MC60_PWRKEY_PIN PIN1_bm
-/* LED.h */
+/* LED */
 #define LED_PORT PORTC
 #define LED_PIN PIN2_bm
-/* BOARD.h WDS*/
-#define BOARD_WDS_PORT1_PORT PORTB
-#define BOARD_WDS_PORT1_PIN PIN4_bm
-#define BOARD_WDS_PORT2_PORT PORTB
-#define BOARD_WDS_PORT2_PIN PIN5_bm
-/* BOARD.h RDS*/
-#define BOARD_RDS_PORT1_PORT PORTC
-#define BOARD_RDS_PORT1_PIN PIN0_bm
-#define BOARD_RDS_PORT2_PORT PORTC
-#define BOARD_RDS_PORT2_PIN PIN1_bm
-
-/************************************************************************/
-/* ADC Pins                                                             */
-/************************************************************************/
+/* WDS */
+#define WDS_PORT1_PORT PORTB
+#define WDS_PORT1_PIN PIN4_bm
+#define WDS_PORT2_PORT PORTB
+#define WDS_PORT2_PIN PIN5_bm
+/* RDS */
+#define RDS_PORT1_PORT PORTC
+#define RDS_PORT1_PIN PIN0_bm
+#define RDS_PORT2_PORT PORTC
+#define RDS_PORT2_PIN PIN1_bm
+/* RAS */
 #define RAS_PORT1 ADC_MUXPOS_AIN5_gc
 #define RAS_PORT2 ADC_MUXPOS_AIN6_gc
 #define RAS_VIN ADC_MUXPOS_AIN7_gc
